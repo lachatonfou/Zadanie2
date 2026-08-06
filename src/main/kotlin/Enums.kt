@@ -1,4 +1,12 @@
 package org.example
 
-class Enums {
+enum class CharacterClass {
+    Warrior,
+    Mage,
+    Rogue
+}
+
+enum class Item {
+    HealthPotion,
+    ManaPotion
 }
