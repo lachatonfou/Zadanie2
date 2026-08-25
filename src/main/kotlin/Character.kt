@@ -6,7 +6,7 @@ abstract class Character(
     val attackRate: Int,
     health: Int,
     mana: Int,
-    inventory: MutableList<Item>
+    inventory: List<Item>
 ) {
 
     var health: Int = health
@@ -15,7 +15,7 @@ abstract class Character(
     var mana: Int = mana
         protected set
 
-    private val inventoryList: MutableList<Item> = inventory
+    private val inventoryList: MutableList<Item> = inventory.toMutableList()
 
     val inventory: List<Item>
         get() = inventoryList
@@ -34,7 +34,7 @@ abstract class Character(
     }
 
     fun drinkHealthPotion() {
-        if (Item.HealthPotion in inventory) {
+        if (Item.HealthPotion in inventoryList) {
             inventoryList.remove(Item.HealthPotion)
             health += 10
             println("Вы вылечились на 10 hp")
@@ -45,7 +45,7 @@ abstract class Character(
     }
 
     fun drinkManaPotion() {
-        if (Item.ManaPotion in inventory) {
+        if (Item.ManaPotion in inventoryList) {
             inventoryList.remove(Item.ManaPotion)
             mana += 3
             println("Вы восполнили ману на 3")

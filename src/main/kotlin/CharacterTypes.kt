@@ -23,9 +23,9 @@ class Mage(name: String) : Character(
         Item.ManaPotion,
         Item.ManaPotion
     )
-) {
+), useMagic {
 
-    fun castSpell(enemy: Enemy): Boolean {
+    override fun castSpell(enemy: Enemy): Boolean {
         val spellDamage = 5
         val manaCost = 1
 

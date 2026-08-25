@@ -14,7 +14,7 @@ fun chooseAction(character: Character, enemy: Enemy) {
         "Выпить зелье лечения" -> character.drinkHealthPotion()
         "Выпить зелье маны" -> character.drinkManaPotion()
         "Использовать заклинание" -> {
-            if (character is Mage) {
+            if (character is useMagic) {
                 val spellWasCast = character.castSpell(enemy)
                 if (spellWasCast && enemy.health > 0) {
                     enemy.attack(character)
