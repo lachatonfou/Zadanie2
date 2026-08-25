@@ -31,7 +31,7 @@ class Mage(name: String) : Character(
 
         if (mana >= manaCost) {
             mana -= manaCost
-            enemy.health = (enemy.health - spellDamage).coerceAtLeast(0)
+            enemy.takeDamage(spellDamage)
 
             println("$name использует заклинание")
             println("Заклинание нанесло $spellDamage урона")

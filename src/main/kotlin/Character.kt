@@ -6,17 +6,19 @@ abstract class Character(
     val attackRate: Int,
     health: Int,
     mana: Int,
-    private val inventory: MutableList<Item> = inventoryList
+    inventory: MutableList<Item>
 ) {
-
-    val inventoryList: List<Item>
-        get() = inventory
 
     var health: Int = health
         private set
 
     var mana: Int = mana
-        private set
+        protected set
+
+    private val inventoryList: MutableList<Item> = inventory
+
+    val inventory: List<Item>
+        get() = inventoryList
 
     fun attack(enemy: Enemy) {
         val damage = (attackRate - enemy.defenceRate).coerceAtLeast(0)
@@ -33,7 +35,7 @@ abstract class Character(
 
     fun drinkHealthPotion() {
         if (Item.HealthPotion in inventory) {
-            inventory.remove(Item.HealthPotion)
+            inventoryList.remove(Item.HealthPotion)
             health += 10
             println("Вы вылечились на 10 hp")
             println("Ваше текущее здоровье: $health")
@@ -44,7 +46,7 @@ abstract class Character(
 
     fun drinkManaPotion() {
         if (Item.ManaPotion in inventory) {
-            inventory.remove(Item.ManaPotion)
+            inventoryList.remove(Item.ManaPotion)
             mana += 3
             println("Вы восполнили ману на 3")
         } else {
