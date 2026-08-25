@@ -5,9 +5,9 @@ fun main() {
     val character = createCharacter()
 
     while (
-        character.health > 0 && EnemyRepository.enemies.isNotEmpty()
+        character.health > 0 && EnemyRepository.hasEnemies()
     ) {
-        val enemy = EnemyRepository.enemies.removeFirst()
+        val enemy = EnemyRepository.getNextEnemy()
         println("Перед вами ${enemy.enemyName}")
         printEnemyInfo(enemy)
 

@@ -3,18 +3,32 @@ package org.example
 abstract class Character(
     val name: String,
     val characterClass: CharacterClass,
-    var attackRate: Int,
-    var health: Int,
-    var mana: Int,
-    val inventory: MutableList<Item>
+    val attackRate: Int,
+    health: Int,
+    mana: Int,
+    private val inventory: MutableList<Item> = inventoryList
 ) {
+
+    val inventoryList: List<Item>
+        get() = inventory
+
+    var health: Int = health
+        private set
+
+    var mana: Int = mana
+        private set
+
     fun attack(enemy: Enemy) {
         val damage = (attackRate - enemy.defenceRate).coerceAtLeast(0)
-        enemy.health = (enemy.health - damage).coerceAtLeast(0)
+        enemy.takeDamage(damage)
 
         println("$name атакует противника")
         println("Нанесено урона: $damage")
         println("Здоровье противника: ${enemy.health}")
+    }
+
+    fun takeDamage(damage: Int) {
+        health = (health - damage).coerceAtLeast(0)
     }
 
     fun drinkHealthPotion() {
