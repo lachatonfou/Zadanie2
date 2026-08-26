@@ -6,11 +6,21 @@ class Warrior(name: String) : Character(
     attackRate = 6,
     health = 20,
     mana = 0,
-    inventory = mutableListOf(
-        Item.HealthPotion,
-        Item.HealthPotion
+    inventory = Inventory(
+        healthPotionCount = 2
     )
-)
+) {
+
+    override fun attack(enemy: Enemy) {
+        val damage = DamageCalculator.calculateDamage(attackRate, enemy.defenceRate)
+        enemy.takeDamage(damage)
+
+        println("$name атакует противника")
+        println("Нанесено урона: $damage")
+        println("Здоровье противника: ${enemy.health}")
+    }
+
+}
 
 class Mage(name: String) : Character(
     name = name,
@@ -18,10 +28,9 @@ class Mage(name: String) : Character(
     attackRate = 8,
     health = 10,
     mana = 3,
-    inventory = mutableListOf(
-        Item.HealthPotion,
-        Item.ManaPotion,
-        Item.ManaPotion
+    inventory = Inventory(
+        healthPotionCount = 1,
+        manaPotionCount = 2
     )
 ), useMagic {
 
@@ -44,6 +53,16 @@ class Mage(name: String) : Character(
             return false
         }
     }
+
+    override fun attack(enemy: Enemy) {
+        val damage = DamageCalculator.calculateDamage(attackRate, enemy.defenceRate)
+        enemy.takeDamage(damage)
+
+        println("$name атакует противника")
+        println("Нанесено урона: $damage")
+        println("Здоровье противника: ${enemy.health}")
+    }
+
 }
 
 class Rogue(name: String) : Character(
@@ -52,7 +71,18 @@ class Rogue(name: String) : Character(
     attackRate = 10,
     health = 15,
     mana = 0,
-    inventory = mutableListOf(
-        Item.HealthPotion
+    inventory = Inventory(
+        healthPotionCount = 1
     )
-)
+) {
+
+    override fun attack(enemy: Enemy) {
+        val damage = DamageCalculator.calculateDamage(attackRate, enemy.defenceRate)
+        enemy.takeDamage(damage)
+
+        println("$name атакует противника")
+        println("Нанесено урона: $damage")
+        println("Здоровье противника: ${enemy.health}")
+    }
+
+}

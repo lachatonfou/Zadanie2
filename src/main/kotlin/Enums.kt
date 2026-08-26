@@ -6,7 +6,9 @@ enum class CharacterClass {
     Rogue
 }
 
-enum class Item {
-    HealthPotion,
-    ManaPotion
-}
+enum class Item (
+    val effectValue: Int
+    ) {
+        HealthPotion(10),
+        ManaPotion(3)
+    }
