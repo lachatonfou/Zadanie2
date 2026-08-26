@@ -32,7 +32,7 @@ class Mage(name: String) : Character(
         healthPotionCount = 1,
         manaPotionCount = 2
     )
-), useMagic {
+), UseMagic {
 
     override fun castSpell(enemy: Enemy): Boolean {
         val spellDamage = 5

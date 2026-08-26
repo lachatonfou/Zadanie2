@@ -26,8 +26,18 @@ fun chooseCharacter(
 
 fun readCharacterClass(): CharacterClass {
 
-    println("Введите класс (Warrior / Mage / Rogue):")
-    val characterClassInput = readln()
-    return CharacterClass.valueOf(characterClassInput)
+    while (true) {
+        println("Введите класс:")
 
+        println("1. Warrior")
+        println("2. Mage")
+        println("3. Rogue")
+
+        when (readln().trim()) {
+            "1" -> return CharacterClass.Warrior
+            "2" -> return CharacterClass.Mage
+            "3" -> return CharacterClass.Rogue
+            else -> println("Некорректный ввод. Введите 1, 2 или 3")
+        }
+    }
 }

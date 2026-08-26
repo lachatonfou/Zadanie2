@@ -2,26 +2,35 @@ package org.example
 
 fun chooseAction(character: Character, enemy: Enemy) {
 
-    println("Выберите действие (Атаковать, Выпить зелье лечения, Выпить зелье маны, Использовать заклинание):")
+    while (true) {
+        println("Выберите действие:")
+        println("1. Атаковать")
+        println("2. Выпить зелье лечения")
+        println("3. Выпить зелье маны")
+        println("4. Использовать заклинание")
 
-    when (readln()) {
-        "Атаковать" -> {
-            character.attack(enemy)
-            if (enemy.health > 0) {
-                enemy.attack(character)
-            }
-        }
-        "Выпить зелье лечения" -> character.drinkHealthPotion()
-        "Выпить зелье маны" -> character.drinkManaPotion()
-        "Использовать заклинание" -> {
-            if (character is useMagic) {
-                val spellWasCast = character.castSpell(enemy)
-                if (spellWasCast && enemy.health > 0) {
+        when (readln().trim()) {
+            "1" -> {
+                character.attack(enemy)
+                if (enemy.health > 0) {
                     enemy.attack(character)
+                }
+            }
+            "2" -> character.drinkHealthPotion()
+            "3" -> character.drinkManaPotion()
+            "4" -> {
+                if (character is UseMagic) {
+                    val spellWasCast = character.castSpell(enemy)
+                    if (spellWasCast && enemy.health > 0) {
+                        enemy.attack(character)
                     }
                 } else {
                     println("Этот персонаж не умеет использовать заклинания")
                 }
+            }
+            else -> {
+                println("Некорректный ввод. Введите 1, 2, 3 или 4")
+            }
         }
     }
 

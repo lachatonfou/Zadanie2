@@ -1,6 +1,6 @@
 package org.example
 
-interface useMagic{
+interface UseMagic{
 
     fun castSpell(enemy: Enemy): Boolean
 
