@@ -26,6 +26,7 @@ abstract class Character(
             health += Item.HealthPotion.effectValue
             println("Вы вылечились на 10 hp")
             println("Ваше текущее здоровье: $health")
+            println("Ваш инвентарь: ${inventory.getItemCount(Item.HealthPotion)}, ${inventory.getItemCount(Item.ManaPotion)}")
         } else {
             println("В инвентаре нет зелья лечения")
         }
@@ -35,6 +36,7 @@ abstract class Character(
         if (inventory.useItem(Item.ManaPotion)) {
             mana += Item.ManaPotion.effectValue
             println("Вы восполнили ману на 3")
+            println("Ваш инвентарь: ${inventory.getItemCount(Item.HealthPotion)}, ${inventory.getItemCount(Item.ManaPotion)}")
         } else {
             println("В инвентаре нет зелья маны")
         }

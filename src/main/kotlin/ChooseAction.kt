@@ -15,9 +15,16 @@ fun chooseAction(character: Character, enemy: Enemy) {
                 if (enemy.health > 0) {
                     enemy.attack(character)
                 }
+                return
             }
-            "2" -> character.drinkHealthPotion()
-            "3" -> character.drinkManaPotion()
+            "2" -> {
+                character.drinkHealthPotion()
+                return
+            }
+            "3" -> {
+                character.drinkManaPotion()
+                return
+            }
             "4" -> {
                 if (character is UseMagic) {
                     val spellWasCast = character.castSpell(enemy)
@@ -27,6 +34,7 @@ fun chooseAction(character: Character, enemy: Enemy) {
                 } else {
                     println("Этот персонаж не умеет использовать заклинания")
                 }
+                return
             }
             else -> {
                 println("Некорректный ввод. Введите 1, 2, 3 или 4")
