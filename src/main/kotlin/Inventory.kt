@@ -5,8 +5,8 @@ class Inventory(
     manaPotionCount: Int = 0
 ) {
     private val items: MutableMap<Item, Int> = mutableMapOf(
-        Item.HealthPotion to healthPotionCount,
-        Item.ManaPotion to manaPotionCount
+        HealthPotion to healthPotionCount,
+        ManaPotion to manaPotionCount
     )
 
     fun useItem(item: Item): Boolean {
@@ -25,7 +25,6 @@ class Inventory(
     }
 
     override fun toString(): String {
-        return "HealthPotion: ${getItemCount(Item.HealthPotion)}, " +
-                "ManaPotion: ${getItemCount(Item.ManaPotion)}"
+        return "Зелья лечения: ${getItemCount(HealthPotion)}, " + "Зелья маны: ${getItemCount(ManaPotion)}"
     }
 }

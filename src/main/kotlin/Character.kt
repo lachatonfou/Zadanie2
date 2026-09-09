@@ -6,6 +6,7 @@ abstract class Character(
     val attackRate: Int,
     health: Int,
     mana: Int,
+    val defenceRate : Int = 0,
     val inventory: Inventory
 ) {
 
@@ -21,24 +22,22 @@ abstract class Character(
         health = (health - damage).coerceAtLeast(0)
     }
 
-    fun drinkHealthPotion() {
-        if (inventory.useItem(Item.HealthPotion)) {
-            health += Item.HealthPotion.effectValue
-            println("Вы вылечились на 10 hp")
-            println("Ваше текущее здоровье: $health")
-            println("Ваш инвентарь: ${inventory.getItemCount(Item.HealthPotion)}, ${inventory.getItemCount(Item.ManaPotion)}")
+    fun restoreHealth(amount : Int) {
+        health += amount
+    }
+
+    fun restoreMana(amount : Int) {
+        mana += amount
+    }
+
+    fun useItem(item: Item) {
+        if (inventory.useItem(item)) {
+            item.applyEffect(this)
+            println("Вы использовали предмет")
+            inventory.toString()
         } else {
-            println("В инвентаре нет зелья лечения")
+            println("Предмета ${item.name} нет в инвентаре")
         }
     }
 
-    fun drinkManaPotion() {
-        if (inventory.useItem(Item.ManaPotion)) {
-            mana += Item.ManaPotion.effectValue
-            println("Вы восполнили ману на 3")
-            println("Ваш инвентарь: ${inventory.getItemCount(Item.HealthPotion)}, ${inventory.getItemCount(Item.ManaPotion)}")
-        } else {
-            println("В инвентаре нет зелья маны")
-        }
-    }
 }

@@ -18,11 +18,11 @@ fun chooseAction(character: Character, enemy: Enemy) {
                 return
             }
             "2" -> {
-                character.drinkHealthPotion()
+                character.useItem(HealthPotion)
                 return
             }
             "3" -> {
-                character.drinkManaPotion()
+                character.useItem(ManaPotion)
                 return
             }
             "4" -> {

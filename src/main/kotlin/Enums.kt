@@ -5,10 +5,3 @@ enum class CharacterClass {
     Mage,
     Rogue
 }
-
-enum class Item (
-    val effectValue: Int
-    ) {
-        HealthPotion(10),
-        ManaPotion(3)
-    }
