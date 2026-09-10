@@ -6,8 +6,8 @@ abstract class Character(
     val attackRate: Int,
     health: Int,
     mana: Int,
-    val defenceRate : Int = 0,
-    val inventory: Inventory
+    val inventory: Inventory,
+    val defenceRate : Int = 0
 ) {
 
     var health: Int = health

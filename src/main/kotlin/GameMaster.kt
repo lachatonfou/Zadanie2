@@ -2,22 +2,20 @@ package org.example
 
 class GameMaster {
 
-    private val gamePrint = GamePrint
-
     fun startGame() {
         val character = createCharacter()
 
         while (character.health > 0 && EnemyRepository.hasEnemies()) {
             val enemy = EnemyRepository.getNextEnemy()
 
-            gamePrint.printEnemyAppeared(enemy)
+            GamePrint.printEnemyAppeared(enemy)
             fight(character, enemy)
         }
 
         if (character.health <= 0) {
-            gamePrint.printCharacterDie()
+            GamePrint.printCharacterDie()
         } else {
-            gamePrint.printGameVictory()
+            GamePrint.printGameVictory()
         }
     }
 
@@ -27,20 +25,20 @@ class GameMaster {
         }
 
         if (enemy.health <= 0) {
-            gamePrint.printEnemyDie(enemy)
+            GamePrint.printEnemyDie(enemy)
         }
     }
 
     private fun chooseAction(character: Character, enemy: Enemy) {
         while (true) {
-            gamePrint.printChooseAction()
+            GamePrint.printChooseAction()
 
             when (readln().trim()) {
                 "1" -> return characterAttack(character, enemy)
                 "2" -> return useItem(character, HealthPotion)
                 "3" -> return useItem(character, ManaPotion)
                 "4" -> return useMagic(character, enemy)
-                else -> gamePrint.printIncorrectInput()
+                else -> GamePrint.printIncorrectInput()
             }
         }
     }
@@ -48,7 +46,7 @@ class GameMaster {
     private fun characterAttack(character: Character, enemy: Enemy) {
         val damage = character.attack(enemy)
 
-        gamePrint.printCharacterAttacked(character, enemy, damage)
+        GamePrint.printCharacterAttacked(character, enemy, damage)
 
         if (enemy.health > 0) {
             enemyAttack(enemy, character)
@@ -58,38 +56,38 @@ class GameMaster {
     private fun enemyAttack(enemy: Enemy, character: Character) {
         val damage = enemy.attack(character)
 
-        gamePrint.printEnemyAttacked(character, enemy, damage)
+        GamePrint.printEnemyAttacked(character, enemy, damage)
     }
 
     private fun useItem(character: Character, item: Item) {
         val itemWasUsed = character.useItem(item)
 
         if (itemWasUsed) {
-            gamePrint.printSuccessfulUseItem(item)
-            gamePrint.printInventory(character)
-            gamePrint.printCharacterHealth(character)
-            gamePrint.printCharacterMana(character)
+            GamePrint.printSuccessfulUseItem(item)
+            GamePrint.printInventory(character)
+            GamePrint.printCharacterHealth(character)
+            GamePrint.printCharacterMana(character)
         } else {
-            gamePrint.printFailedUseItem(item)
+            GamePrint.printFailedUseItem(item)
         }
     }
 
     private fun useMagic(character: Character, enemy: Enemy) {
         if (character !is UseMagic) {
-            gamePrint.printCannotUseMagic()
+            GamePrint.printCannotUseMagic()
             return
         }
 
         val damage = character.castSpell(enemy)
 
         if (damage != null) {
-            gamePrint.printCharacterAttackedMagic(character, enemy, damage)
+            GamePrint.printCharacterAttackedMagic(character, enemy, damage)
 
             if (enemy.health > 0) {
                 enemyAttack(enemy, character)
             }
         } else {
-            gamePrint.printNotEnoughMana()
+            GamePrint.printNotEnoughMana()
         }
     }
 }
