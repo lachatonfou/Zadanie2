@@ -36,30 +36,11 @@ class GameMaster {
             gamePrint.printChooseAction()
 
             when (readln().trim()) {
-
-                "1" -> {
-                    characterAttack(character, enemy)
-                    return
-                }
-
-                "2" -> {
-                    useItem(character, HealthPotion)
-                    return
-                }
-
-                "3" -> {
-                    useItem(character, ManaPotion)
-                    return
-                }
-
-                "4" -> {
-                    useMagic(character, enemy)
-                    return
-                }
-
-                else -> {
-                    gamePrint.printIncorrectInput()
-                }
+                "1" -> return characterAttack(character, enemy)
+                "2" -> return useItem(character, HealthPotion)
+                "3" -> return useItem(character, ManaPotion)
+                "4" -> return useMagic(character, enemy)
+                else -> gamePrint.printIncorrectInput()
             }
         }
     }

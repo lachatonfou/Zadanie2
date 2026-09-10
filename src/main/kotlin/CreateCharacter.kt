@@ -33,8 +33,7 @@ fun readCharacterClass(): CharacterClass {
             "1" -> return CharacterClass.Warrior
             "2" -> return CharacterClass.Mage
             "3" -> return CharacterClass.Rogue
-            else ->
-                GamePrint.printIncorrectInput()
+            else -> GamePrint.printIncorrectInput()
         }
     }
 }

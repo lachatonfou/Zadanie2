@@ -31,13 +31,12 @@ abstract class Character(
     }
 
     fun useItem(item: Item) : Boolean {
-        if (inventory.useItem(item)) {
-            item.applyEffect(this)
-
-            return true
-        } else {
+        if (!inventory.useItem(item)) {
             return false
         }
-    }
 
-}
+        item.applyEffect(this)
+
+        return true
+        }
+    }

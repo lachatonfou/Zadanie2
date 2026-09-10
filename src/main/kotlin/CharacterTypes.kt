@@ -39,14 +39,14 @@ class Mage(name: String) : Character(
 
     override fun castSpell(enemy: Enemy): Int? {
 
-        if (mana >= MANA_COST) {
-            mana -= MANA_COST
-            enemy.takeDamage(SPELL_DAMAGE)
-
-            return SPELL_DAMAGE
-        } else {
+        if (mana < MANA_COST) {
             return null
         }
+
+        mana -= MANA_COST
+        enemy.takeDamage(SPELL_DAMAGE)
+
+        return SPELL_DAMAGE
     }
 
     override fun attack(enemy: Enemy): Int {
