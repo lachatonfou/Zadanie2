@@ -16,7 +16,7 @@ abstract class Character(
     var mana: Int = mana
         protected set
 
-    abstract fun attack(enemy: Enemy)
+    abstract fun attack(enemy: Enemy) : Int
 
     fun takeDamage(damage: Int) {
         health = (health - damage).coerceAtLeast(0)
@@ -30,13 +30,13 @@ abstract class Character(
         mana += amount
     }
 
-    fun useItem(item: Item) {
+    fun useItem(item: Item) : Boolean {
         if (inventory.useItem(item)) {
             item.applyEffect(this)
-            println("Вы использовали предмет")
-            inventory.toString()
+
+            return true
         } else {
-            println("Предмета ${item.name} нет в инвентаре")
+            return false
         }
     }
 

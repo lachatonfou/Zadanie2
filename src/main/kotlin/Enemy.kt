@@ -10,13 +10,15 @@ abstract class Enemy(
     var health: Int = health
         private set
 
-    fun attack(character: Character) {
+    fun attack(character: Character) : Int{
         val damage = DamageCalculator.calculateDamage(attackRate, character.defenceRate)
         character.takeDamage(damage)
 
         println("$enemyName атакует в ответ")
         println("Противник нанес $damage урона")
         println("Ваше здоровье: ${character.health}")
+
+        return damage
     }
 
     fun takeDamage(damage: Int) {

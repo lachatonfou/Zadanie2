@@ -7,20 +7,22 @@ class Warrior(name: String) : Character(
     health = 20,
     mana = 0,
     inventory = Inventory(
-        healthPotionCount = 2
+        mapOf(
+        HealthPotion to 2)
     )
 ) {
 
-    override fun attack(enemy: Enemy) {
+    override fun attack(enemy: Enemy) : Int {
         val damage = DamageCalculator.calculateDamage(attackRate, enemy.defenceRate)
         enemy.takeDamage(damage)
 
-        println("$name атакует противника")
-        println("Нанесено урона: $damage")
-        println("Здоровье противника: ${enemy.health}")
+        return damage
     }
 
 }
+
+private const val SPELLDAMAGE = 5
+private const val MANACOST = 1
 
 class Mage(name: String) : Character(
     name = name,
@@ -29,38 +31,29 @@ class Mage(name: String) : Character(
     health = 10,
     mana = 3,
     inventory = Inventory(
-        healthPotionCount = 1,
-        manaPotionCount = 2
+        mapOf(
+        HealthPotion to 1,
+        ManaPotion to 2)
     )
 ), UseMagic {
 
-    override fun castSpell(enemy: Enemy): Boolean {
-        val spellDamage = 5
-        val manaCost = 1
+    override fun castSpell(enemy: Enemy): Int? {
 
-        if (mana >= manaCost) {
-            mana -= manaCost
-            enemy.takeDamage(spellDamage)
+        if (mana >= MANACOST) {
+            mana -= MANACOST
+            enemy.takeDamage(SPELLDAMAGE)
 
-            println("$name использует заклинание")
-            println("Заклинание нанесло $spellDamage урона")
-            println("Осталось маны: $mana")
-            println("Здоровье противника: ${enemy.health}")
-
-            return true
+            return SPELLDAMAGE
         } else {
-            println("У вас недостаточно маны")
-            return false
+            return null
         }
     }
 
-    override fun attack(enemy: Enemy) {
+    override fun attack(enemy: Enemy): Int {
         val damage = DamageCalculator.calculateDamage(attackRate, enemy.defenceRate)
         enemy.takeDamage(damage)
 
-        println("$name атакует противника")
-        println("Нанесено урона: $damage")
-        println("Здоровье противника: ${enemy.health}")
+        return damage
     }
 
 }
@@ -72,17 +65,16 @@ class Rogue(name: String) : Character(
     health = 15,
     mana = 0,
     inventory = Inventory(
-        healthPotionCount = 1
+        mapOf(
+        HealthPotion to 1)
     )
 ) {
 
-    override fun attack(enemy: Enemy) {
+    override fun attack(enemy: Enemy): Int {
         val damage = DamageCalculator.calculateDamage(attackRate, enemy.defenceRate)
         enemy.takeDamage(damage)
 
-        println("$name атакует противника")
-        println("Нанесено урона: $damage")
-        println("Здоровье противника: ${enemy.health}")
+        return damage
     }
 
 }

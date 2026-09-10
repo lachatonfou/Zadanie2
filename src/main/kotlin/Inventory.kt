@@ -1,13 +1,9 @@
 package org.example
 
 class Inventory(
-    healthPotionCount: Int = 0,
-    manaPotionCount: Int = 0
+    initialItems: Map<Item, Int> = emptyMap()
 ) {
-    private val items: MutableMap<Item, Int> = mutableMapOf(
-        HealthPotion to healthPotionCount,
-        ManaPotion to manaPotionCount
-    )
+    private val items: MutableMap<Item, Int> = initialItems.toMutableMap()
 
     fun useItem(item: Item): Boolean {
         val count = items[item] ?: 0
@@ -20,11 +16,4 @@ class Inventory(
         return true
     }
 
-    fun getItemCount(item: Item): Int {
-        return items[item] ?: 0
-    }
-
-    override fun toString(): String {
-        return "Зелья лечения: ${getItemCount(HealthPotion)}, " + "Зелья маны: ${getItemCount(ManaPotion)}"
-    }
 }
