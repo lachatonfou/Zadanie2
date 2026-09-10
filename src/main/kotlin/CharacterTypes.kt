@@ -21,8 +21,8 @@ class Warrior(name: String) : Character(
 
 }
 
-private const val SPELLDAMAGE = 5
-private const val MANACOST = 1
+private const val SPELL_DAMAGE = 5
+private const val MANA_COST = 1
 
 class Mage(name: String) : Character(
     name = name,
@@ -39,11 +39,11 @@ class Mage(name: String) : Character(
 
     override fun castSpell(enemy: Enemy): Int? {
 
-        if (mana >= MANACOST) {
-            mana -= MANACOST
-            enemy.takeDamage(SPELLDAMAGE)
+        if (mana >= MANA_COST) {
+            mana -= MANA_COST
+            enemy.takeDamage(SPELL_DAMAGE)
 
-            return SPELLDAMAGE
+            return SPELL_DAMAGE
         } else {
             return null
         }

@@ -1,13 +1,9 @@
 package org.example
 
-class GamePrint {
+object GamePrint {
 
-    fun printChooseAction(){
-        println("Выберите действие:")
-        println("1. Атаковать")
-        println("2. Выпить зелье лечения")
-        println("3. Выпить зелье маны")
-        println("4. Использовать заклинание")
+    fun printEnterName() {
+        println("Введите имя:")
     }
 
     fun printCreateCharacter() {
@@ -15,6 +11,14 @@ class GamePrint {
         println("1. Warrior")
         println("2. Mage")
         println("3. Rogue")
+    }
+
+    fun printChooseAction(){
+        println("Выберите действие:")
+        println("1. Атаковать")
+        println("2. Выпить зелье лечения")
+        println("3. Выпить зелье маны")
+        println("4. Использовать заклинание")
     }
 
     fun printIncorrectInput() {

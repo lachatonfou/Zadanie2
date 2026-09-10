@@ -2,7 +2,7 @@ package org.example
 
 class GameMaster {
 
-    private val gamePrint = GamePrint()
+    private val gamePrint = GamePrint
 
     fun startGame() {
         val character = createCharacter()

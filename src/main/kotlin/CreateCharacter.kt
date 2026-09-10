@@ -2,13 +2,13 @@ package org.example
 
 fun createCharacter(): Character {
 
-    println("Введите имя:")
+    GamePrint.printEnterName()
     val nameInput = readln()
     val character = chooseCharacter(
         name = nameInput,
         characterClass = readCharacterClass()
     )
-    GamePrint().printCharacterInfo(character)
+    GamePrint.printCharacterInfo(character)
 
     return character
 }
@@ -27,14 +27,14 @@ fun chooseCharacter(
 fun readCharacterClass(): CharacterClass {
 
     while (true) {
-        GamePrint().printCreateCharacter()
+        GamePrint.printCreateCharacter()
 
         when (readln().trim()) {
             "1" -> return CharacterClass.Warrior
             "2" -> return CharacterClass.Mage
             "3" -> return CharacterClass.Rogue
             else ->
-                GamePrint().printIncorrectInput()
+                GamePrint.printIncorrectInput()
         }
     }
 }
