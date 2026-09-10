@@ -8,7 +8,7 @@ fun createCharacter(): Character {
         name = nameInput,
         characterClass = readCharacterClass()
     )
-    printCharacterInfo(character)
+    GamePrint().printCharacterInfo(character)
 
     return character
 }
@@ -27,17 +27,14 @@ fun chooseCharacter(
 fun readCharacterClass(): CharacterClass {
 
     while (true) {
-        println("Введите класс:")
-
-        println("1. Warrior")
-        println("2. Mage")
-        println("3. Rogue")
+        GamePrint().printCreateCharacter()
 
         when (readln().trim()) {
             "1" -> return CharacterClass.Warrior
             "2" -> return CharacterClass.Mage
             "3" -> return CharacterClass.Rogue
-            else -> println("Некорректный ввод. Введите 1, 2 или 3")
+            else ->
+                GamePrint().printIncorrectInput()
         }
     }
 }

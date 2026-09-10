@@ -16,4 +16,10 @@ class Inventory(
         return true
     }
 
+    override fun toString(): String {
+        return items.entries.joinToString {
+            "${it.key.name}: ${it.value}"
+        }
+    }
+
 }

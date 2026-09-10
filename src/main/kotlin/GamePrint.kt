@@ -10,8 +10,27 @@ class GamePrint {
         println("4. Использовать заклинание")
     }
 
+    fun printCreateCharacter() {
+        println("Введите класс:")
+        println("1. Warrior")
+        println("2. Mage")
+        println("3. Rogue")
+    }
+
     fun printIncorrectInput() {
         println("Некорректный ввод")
+    }
+
+    fun printCharacterInfo(character: Character) {
+
+        println("Персонаж создан")
+        println("Имя: ${character.name}")
+        println("Класс: ${character.characterClass}")
+        println("Атака: ${character.attackRate}")
+        println("Здоровье: ${character.health}")
+        println("Мана: ${character.mana}")
+        println("Инвентарь: ${character.inventory}")
+
     }
 
     fun printCannotUseMagic() {
@@ -22,7 +41,7 @@ class GamePrint {
         println("Вы использовали ${item.name}")
     }
 
-    fun printFailedlUseItem(item: Item){
+    fun printFailedUseItem(item: Item){
         println("Предмета ${item.name} нет в инвентаре")
     }
 
@@ -31,7 +50,7 @@ class GamePrint {
     }
 
     fun printInventory(character: Character){
-        println("Ваш инвентарь: $character.inventory")
+        println("Ваш инвентарь: ${character.inventory}")
     }
 
     fun printCharacterDie() {
@@ -65,6 +84,9 @@ class GamePrint {
 
     fun printEnemyAppeared(enemy: Enemy) {
         println("Перед вами ${enemy.enemyName}")
+        println("Атака противника: ${enemy.attackRate}")
+        println("Здоровье противника: ${enemy.health}")
+        println("Защита противника: ${enemy.defenceRate}")
     }
 
     fun printEnemyAttacked(character: Character, enemy: Enemy, damage: Int) {

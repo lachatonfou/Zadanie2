@@ -14,10 +14,6 @@ abstract class Enemy(
         val damage = DamageCalculator.calculateDamage(attackRate, character.defenceRate)
         character.takeDamage(damage)
 
-        println("$enemyName атакует в ответ")
-        println("Противник нанес $damage урона")
-        println("Ваше здоровье: ${character.health}")
-
         return damage
     }
 

@@ -89,7 +89,7 @@ class GameMaster {
             gamePrint.printCharacterHealth(character)
             gamePrint.printCharacterMana(character)
         } else {
-            gamePrint.printFailedlUseItem(item)
+            gamePrint.printFailedUseItem(item)
         }
     }
 
